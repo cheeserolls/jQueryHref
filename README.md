@@ -6,8 +6,8 @@ jQuery extension which adds lots of helpful tools for manipulation of URLs and h
 ### Getting Started
 Download the [production version][min] or the [development version][max].
 
-[min]: https://raw.github.com/cheeserolls/jQueryHref/master/dist/href.min.js
-[max]: https://raw.github.com/cheeserolls/jQueryHref/master/dist/href.js
+[min]: https://raw.github.com/cheeserolls/jQueryHref/master/dist/jquery.href.min.js
+[max]: https://raw.github.com/cheeserolls/jQueryHref/master/dist/jquery.href.js
 
 
 ### .href()
@@ -23,7 +23,7 @@ Suppose we're on `http://www.example.com/path/to/page?foo=bar`
 ```javascript
 $('#myLink').href('protocol');   // http
 $('#myLink').href('host');       // www.example.com
-$('#myLink').href('path');       // path/to/page
+$('#myLink').href('path');       // path/to/page/
 $('#myLink').href('query');      // {a:"foo",b:"bar"}
 $('#myLink').href('hash');       // derp
 $('#myLink').href('href');       // http://www.example.com/path/to/page?a=foo&b=bar#derp
@@ -32,13 +32,13 @@ $('#myLink').href('href');       // http://www.example.com/path/to/page?a=foo&b=
 **Write components:**
 
 ```javascript
-$('#myLink').href('protocol','https').href('path','path/to/otherpage').href('hash',null);
+$('#myLink').href('protocol','https').href('path','path/to/otherpage/').href('hash',null);
 ```
 
 or equivalently
 
 ```javascript
-$('#myLink').href({protocol:'https', path:'path/to/otherpage', href:null});
+$('#myLink').href({protocol:'https', path:'path/to/otherpage/', href:null});
 ```
 
 href of `#myLink` is now `https://www.example.com/path/to/otherpage/?a=foo&b=bar`
@@ -72,12 +72,29 @@ $('#myLink').href('path');       // bacon
 
 **2 new jquery selectors**
 
-`:internal` - matches links to pages on the same hostname
-`:external` - matches links to pages on a different hostname
+`:href-internal` - matches links to pages on the same hostname
+`:href-external` - matches links to pages on a different hostname
 
 eg - make all external links open in a new tab:
 ```javascript
 $('a:external').attr('target','_blank');
+```
+
+**Use $.href to create <a> elements quickly for further manipluation:**
+
+```javascript
+$.href('www.google.com');    // jQuery set containing an <a> element with href www.google.com
+$.href();                    // jQuery set containing an <a> element with href of the current URL
+
+
+// start with current URL, change a query param, force protocol to https, and alert the resulting URL
+alert($.href().href('query',{foo:'bar'}).href('protocol','https').href('href'));
+```
+
+**Utility function to get the site homepage:**
+
+```javascript
+$.href.home();  // jQuery set containing an <a> element with href of the current URL with the path, query and hash all removed
 ```
 
 **Utility function for comparing links:**
@@ -85,8 +102,10 @@ $('a:external').attr('target','_blank');
 If we're on `http://www.example.com/egg` and have `<a id="myLink" href="/bacon">click here</a>`
 
 ```javascript
-$.linkEquals('/toast/','http://www.example.com/toast/');        // true - strings interpreted as links and normalized
-$.linkEquals('?foo=bar','http://www.example.com/egg/?foo=bar'); // true - strings interpreted as links and normalized
-$.linkEquals('/bacon/', $('#myLink'));                          // true - first element of jquery set used, if it's a link
-$.linkEquals('/bacon/', document.getElementById('myLink'));     // true - DOM elements also ok, if it's a link
+$.href.linkEquals('/toast/','http://www.example.com/toast/');        // true - strings interpreted as links and normalized
+$.href.linkEquals('?foo=bar','http://www.example.com/egg/?foo=bar'); // true - strings interpreted as links and normalized
+$.href.linkEquals('/bacon/', $('#myLink'));                          // true - first element of jquery set used, if it's a link
+$.href.linkEquals('/bacon/', document.getElementById('myLink'));     // true - DOM elements also ok, if it's a link
 ```
+
+
