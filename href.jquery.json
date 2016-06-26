@@ -1,0 +1,26 @@
+{
+  "name": "href",
+  "title": "jQueryHref",
+  "description": "jQuery extension which adds lots of helpful tools for manipulation of URLs and hyperlinks.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/cheeserolls/jQueryHref",
+  "author": {
+    "name": "Dan Howard",
+    "email": "dan@fullgun.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cheeserolls/jQueryHref.git"
+  },
+  "bugs": "https://github.com/cheeserolls/jQueryHref/issues",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/cheeserolls/jQueryHref/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "*"
+  },
+  "keywords": []
+}

@@ -2,6 +2,14 @@
 
 jQuery extension which adds lots of helpful tools for manipulation of URLs and hyperlinks
 
+
+### Getting Started
+Download the [production version][min] or the [development version][max].
+
+[min]: https://raw.github.com/cheeserolls/jQueryHref/master/dist/href.min.js
+[max]: https://raw.github.com/cheeserolls/jQueryHref/master/dist/href.js
+
+
 ### .href()
 
 Suppose we're on `http://www.example.com/path/to/page?foo=bar`

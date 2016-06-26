@@ -1,0 +1,12 @@
+#node
+/node_modules/
+
+# Standard Windows and Mac system files to ignore
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
